@@ -1,0 +1,29 @@
+site_name: Chosen
+
+theme:
+  name: mkdocs
+
+nav:
+  - Home: index.md
+  - description:
+      - Introduction: description/introduction.md
+      - Objectives: description/objectives.md
+      - Tumor Dynamics: description/tumor_g_ine.md
+  - Model:
+      - Derivations: Model/derivation.md
+  - All Code: code.md
+
+markdown_extensions:
+  - toc:
+      permalink: 
+  - attr_list
+  - def_list
+  - tables
+  - mdx_math
+
+extra_css:
+  - style.css
+use_directory_urls: false
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
