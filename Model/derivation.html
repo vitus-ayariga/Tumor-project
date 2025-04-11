@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Derivations - Chosen</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Chosen</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">description</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../description/introduction.html" class="dropdown-item">Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../description/objectives.html" class="dropdown-item">Objectives</a>
+</li>
+                                    
+<li>
+    <a href="../description/tumor_g_ine.html" class="dropdown-item">Tumor Dynamics</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Model</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="derivation.html" class="dropdown-item active" aria-current="page">Derivations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../code.html" class="nav-link">All Code</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../description/tumor_g_ine.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../code.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#model-derivations" class="nav-link">Model Derivations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#governing-equation-of-tumor-growth" class="nav-link">Governing Equation of tumor growth</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#immune-interference-function-i-c" class="nav-link">Immune Interference Function: ψ(I, C)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#von-bertalanffy-and-optimal-control-tumor-growth-models" class="nav-link">Von Bertalanffy and Optimal Control Tumor Growth Models</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#control-optimization-with-cost-functions" class="nav-link">Control Optimization with Cost Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-optimization-problem" class="nav-link">The Optimization Problem</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#why-this-matters" class="nav-link">Why This Matters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="model-derivations">Model Derivations<a class="headerlink" href="#model-derivations" title="Permanent link"></a></h1>
+<hr />
+<p>Tumor growth is a complex process governed by the interaction between proliferating cancer cells, the surrounding environment, and the immune system. In this section, we derive a biologically informed mathematical model to describe and simulate this growth. The goal is to construct a system of differential equations that reflects key dynamics such as natural tumor proliferation, immune response interference, and carrying capacity limitations.</p>
+<p>We start from biological intuition, translate into word equations, assign variables, and then systematically build up to the final governing equation used in our simulations.</p>
+<hr />
+<h2 id="governing-equation-of-tumor-growth">Governing Equation of tumor growth<a class="headerlink" href="#governing-equation-of-tumor-growth" title="Permanent link"></a></h2>
+<h3 id="1-modeling-tumor-growth"><strong>1. Modeling Tumor Growth</strong><a class="headerlink" href="#1-modeling-tumor-growth" title="Permanent link"></a></h3>
+<hr />
+<p>In the absence of any external control (e.g., immune system, drugs), tumors generally follow a <strong>logistic growth pattern</strong>:</p>
+<ul>
+<li><p>Growth starts rapidly.</p></li>
+<li><p>slows as space, nutrients, and oxygen become limiting.</p></li>
+<li><p>...and eventually plateaus at a <strong>carrying capacity</strong>, denoted <script type="math/tex"> K_C </script>.</p></li>
+</ul>
+<p><strong>Is this biologically reasonable?</strong></p>
+<blockquote>
+<p>Initially, cancer cells divide unchecked. But resource constraints slow down their expansion overtime. Thus, tumor growth eventually halts unless external interventions are applied.</p>
+</blockquote>
+<p><strong>Modeling:</strong></p>
+<blockquote>
+<p><strong>Rate of change of tumor volume</strong> =<br />
+(intrinsic growth rate) × (current tumor size) × (resource limitation factor)</p>
+</blockquote>
+<p>Translating this:</p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dC}{dt} = \mu \cdot C \cdot \left(1 - \frac{C}{K_C} \right)
+</script>
+</p>
+<p>Where:</p>
+<ul>
+<li>
+<script type="math/tex"> C(t) </script>: Tumor size at time <script type="math/tex"> t </script>
+</li>
+<li>
+<script type="math/tex"> \mu </script>: Intrinsic growth rate of tumor cells</li>
+<li>
+<script type="math/tex"> K_C </script>: Tumor carrying capacity</li>
+</ul>
+<p>This is the classical <strong>logistic model</strong>.</p>
+<hr />
+<h3 id="2-the-logistic-term-theres-more"><strong>2. ...the Logistic Term, ...there's more</strong><a class="headerlink" href="#2-the-logistic-term-theres-more" title="Permanent link"></a></h3>
+<hr />
+<p>Biological systems often deviate from simple logistic behavior, especially when tumor dynamics are influenced by nonlinear feedback mechanisms. To allow more flexibility in growth curve behavior, we introduce a <strong>shape parameter</strong> <script type="math/tex"> \alpha </script>, leading to the <strong>generalized logistic (Richards) model</strong>:</p>
+<p>
+<script type="math/tex; mode=display">
+\left(1 - \left(\frac{C}{K_C} \right)^\alpha \right)
+</script>
+</p>
+<p>So the growth equation becomes:</p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dC}{dt} = \mu \cdot C \cdot \left(1 - \left(\frac{C}{K_C} \right)^\alpha \right)
+</script>
+</p>
+<p>Now:</p>
+<ul>
+<li>
+<script type="math/tex"> \alpha = 1 </script> → Standard logistic growth</li>
+<li>
+<script type="math/tex"> \alpha > 1 </script> → More abrupt slowdown near capacity</li>
+<li>
+<script type="math/tex"> \alpha < 1 </script> → More gradual saturation
+<br />
+<div><img src="../img/diff_alphas.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-logistic-shape-parameter" class="btn btn-primary" role="button">See code</a>
+</div>
+</li>
+</ul>
+<hr />
+<h3 id="3-lets-not-forget-the-immune-system"><strong>3. Lets not forget the immune system</strong><a class="headerlink" href="#3-lets-not-forget-the-immune-system" title="Permanent link"></a></h3>
+<hr />
+<p>The immune system doesn’t just “kill” cancer cells. It also interferes with their growth indirectly through inflammation, signaling interference, and disruption of angiogenesis. So instead of subtracting a kill term like <script type="math/tex"> -pCI </script>, we <strong>modulate</strong> the growth rate itself.</p>
+<p>We introduce a new term:</p>
+<p>
+<script type="math/tex; mode=display">
+1 + \psi(I, C)
+</script>
+</p>
+<p>Where:</p>
+<ul>
+<li>
+<script type="math/tex"> \psi(I, C) </script> (derived later) is a function describing how the <strong>immune cells <script type="math/tex"> I </script></strong> affect the <strong>growth behavior</strong> of the tumor cells.</li>
+<li>The function can be negative (inhibitory) or positive (stimulatory), allowing for nuanced modeling.</li>
+</ul>
+<p>This gives us:</p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dC}{dt} = \mu \cdot (1 + \psi(I, C)) \cdot C \cdot \left(1 - \left(\frac{C}{K_C} \right)^\alpha \right)
+</script>
+</p>
+<hr />
+<h3 id="4-final-normalization"><strong>4. Final Normalization</strong><a class="headerlink" href="#4-final-normalization" title="Permanent link"></a></h3>
+<hr />
+<p>For mathematical elegance and numerical stability, we normalize the overall equation by <script type="math/tex"> \alpha </script>:</p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dC}{dt} = \frac{\mu}{\alpha} (1 + \psi(I, C)) C \left(1 - \left(\frac{C}{K_C} \right)^\alpha \right)
+</script>
+</p>
+<p>This is our <strong>final tumor growth ODE</strong>, and it matches <strong>exactly</strong> with the governing equation in the original project documentation.</p>
+<hr />
+<p><strong>Final Tumor ODE:</strong></p>
+<p>
+<script type="math/tex; mode=display">
+\boxed{ \frac{dC}{dt} = \frac{\mu}{\alpha} (1 + \psi(I, C)) C \left(1 - \left(\frac{C}{K_C} \right)^\alpha \right) }
+</script>
+</p>
+<hr />
+<h2 id="immune-interference-function-i-c">Immune Interference Function: ψ(I, C)<a class="headerlink" href="#immune-interference-function-i-c" title="Permanent link"></a></h2>
+<hr />
+<p>We define the immune interference function as:</p>
+<p>
+<script type="math/tex; mode=display">
+\psi(I, C) = -\theta \left( \frac{I^\beta}{\phi C^\beta + I^\beta} + \varepsilon \log\_{10}(1 + I) \right)
+</script>
+</p>
+<p>This function models how the immune system inhibits the growth of tumor cells. Each term in the equation is derived from biological reasoning and mathematical modeling principles.</p>
+<hr />
+<p><strong>Term-by-Term Breakdown</strong></p>
+<h3 id="1-the-scaling-factor-theta"><strong>1. The Scaling Factor: <script type="math/tex"> -\theta </script></strong><a class="headerlink" href="#1-the-scaling-factor-theta" title="Permanent link"></a></h3>
+<ul>
+<li><strong>Negative sign</strong>: Indicates inhibition of tumor growth.</li>
+<li><strong>θ (theta)</strong>: Represents the maximum strength of immune-mediated suppression.</li>
+<li>It scales the entire function, setting a limit on how strong the immune system's effect can be.</li>
+</ul>
+<hr />
+<h3 id="2-suppression-term"><strong>2. Suppression Term:</strong><a class="headerlink" href="#2-suppression-term" title="Permanent link"></a></h3>
+<p>
+<script type="math/tex; mode=display">
+\frac{I^\beta}{\phi C^\beta + I^\beta}
+</script>
+</p>
+<p>This component reflects the competitive dynamics between immune cells <script type="math/tex"> I </script> and cancer cells <script type="math/tex"> C </script>.</p>
+<ul>
+<li><strong>Numerator <script type="math/tex"> I^\beta </script></strong>: Represents immune “attack power.” The exponent <script type="math/tex"> \beta > 1 </script> introduces nonlinearity, modeling cooperative immune responses.</li>
+<li><strong>Denominator <script type="math/tex"> \phi C^\beta + I^\beta </script></strong>: Models tumor resistance and competition.</li>
+<li>
+<script type="math/tex"> \phi C^\beta </script>: Tumor's ability to resist immune action, scaled by a resistance constant <script type="math/tex"> \phi </script>.</li>
+</ul>
+<p>This term behaves as saturation function:</p>
+<ul>
+<li>When <script type="math/tex"> I \gg C </script>, suppression is high.</li>
+<li>When <script type="math/tex"> C \gg I </script>, suppression drops toward zero.</li>
+</ul>
+<hr />
+<h3 id="3-background-immune-activity-term"><strong>3. Background Immune Activity Term:</strong><a class="headerlink" href="#3-background-immune-activity-term" title="Permanent link"></a></h3>
+<p>
+<script type="math/tex; mode=display">
+\varepsilon \log\_{10}(1 + I)
+</script>
+</p>
+<p>This term captures low-level immune suppression, even when <script type="math/tex"> C </script> is large.</p>
+<ul>
+<li>The <strong>logarithmic</strong> form reflects diminishing returns: increasing immune cells beyond a point has less impact.</li>
+<li>
+<script type="math/tex"> \varepsilon </script>: A parameter that scales this background immune effect.</li>
+</ul>
+<p>This term ensures:</p>
+<ul>
+<li>Some suppression occurs even at low <script type="math/tex"> I </script>,</li>
+<li>But suppression plateaus as <script type="math/tex"> I </script> increases — modeling immune exhaustion or bottlenecks.</li>
+</ul>
+<hr />
+<h2 id="von-bertalanffy-and-optimal-control-tumor-growth-models">Von Bertalanffy and Optimal Control Tumor Growth Models<a class="headerlink" href="#von-bertalanffy-and-optimal-control-tumor-growth-models" title="Permanent link"></a></h2>
+<h3 id="von-bertalanffy-tumor-growth-model"><strong>Von Bertalanffy Tumor Growth Model</strong><a class="headerlink" href="#von-bertalanffy-tumor-growth-model" title="Permanent link"></a></h3>
+<hr />
+<blockquote>
+<p><strong>Starting Assumption:</strong> Tumor growth is driven by the surface area of the tumor, while cell death is proportional to its volume.</p>
+</blockquote>
+<p>This is biologically reasonable because nutrients and oxygen (which drive proliferation) diffuse in through the surface area, while metabolic waste accumulation and lack of resources cause death throughout the volume.</p>
+<hr />
+<h3 id="tumor-volume-vt-derivation"><strong>Tumor Volume <script type="math/tex"> V(t) </script> Derivation:</strong><a class="headerlink" href="#tumor-volume-vt-derivation" title="Permanent link"></a></h3>
+<p>Let:</p>
+<ul>
+<li>
+<script type="math/tex"> V(t) </script>: tumor volume at time <script type="math/tex"> t </script>
+</li>
+<li>
+<script type="math/tex"> \frac{dV}{dt} </script>: rate of change of tumor volume</li>
+</ul>
+<p>Now, using the assumptions:</p>
+<blockquote>
+<p>Growth is <strong>proportional to surface area</strong>:</p>
+</blockquote>
+<ol>
+<li><p>Surface area of a sphere <script type="math/tex"> \propto V^{2/3} </script></p></li>
+<li><p>So growth term <script type="math/tex"> = a V^{2/3} </script>, where <script type="math/tex"> a </script> is a growth coefficient.</p></li>
+</ol>
+<blockquote>
+<p><strong>Death is proportional to volume</strong>:</p>
+</blockquote>
+<ul>
+<li><p>Death term <script type="math/tex"> = b V </script>, where <script type="math/tex"> b </script> is a death (or decay) coefficient</p></li>
+</ul>
+<blockquote>
+<p>Differential Equation</p>
+</blockquote>
+<p>
+<script type="math/tex; mode=display">
+\frac{dV}{dt} = aV^{\frac{2}{3}} - bV
+</script>
+</p>
+<p>This is the <strong>Von Bertalanffy equation</strong>.</p>
+<hr />
+<h3 id="solution-to-von-bertalanffy-equation"><strong>Solution to Von Bertalanffy equation</strong><a class="headerlink" href="#solution-to-von-bertalanffy-equation" title="Permanent link"></a></h3>
+<hr />
+<p>The analytical solution to (1) is derived using integrating factor techniques</p>
+<p>
+<script type="math/tex; mode=display">
+V(t) = \left[\frac{a}{b} + \left( \frac{1}{V_0^{1/3}} - \frac{a}{b} \right)e^{-\frac{1}{3}b(t - t_0)}\right]^3
+</script>
+</p>
+<p>Where:</p>
+<ul>
+<li>
+<script type="math/tex"> V_0 </script>: Initial volume at <script type="math/tex"> t_0 </script>
+</li>
+<li>
+<script type="math/tex"> \frac{a}{b} </script>: Determines the carrying capacity <script type="math/tex"> K </script>
+</li>
+<li>
+<script type="math/tex"> K = \left( \frac{a}{b} \right)^3 </script>: The saturation volume</li>
+</ul>
+<p>This solution shows:</p>
+<ul>
+<li>If <script type="math/tex"> V_0 < K </script>, tumor grows to equilibrium.</li>
+<li>If <script type="math/tex"> V_0 > K </script>, tumor shrinks to equilibrium.</li>
+<li>If <script type="math/tex"> V_0 = K </script>, tumor remains constant.</li>
+</ul>
+<div><img src="../img/von_b.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#behavior-of-the-von-bertalanffy-model" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<hr />
+<h2 id="control-optimization-with-cost-functions">Control Optimization with Cost Functions<a class="headerlink" href="#control-optimization-with-cost-functions" title="Permanent link"></a></h2>
+<hr />
+<p>So far, we’ve modeled the tumor volume <script type="math/tex"> V(t) </script> over time using a differential equation. Now, we want to <strong>control</strong> it. But not blindly. In the real world, controlling something like a tumor through drug treatment comes at a <strong>cost</strong>: side effects, resource limits, and drug resistance. So, instead of just minimizing tumor volume blindly, we need a <strong>trade-off</strong> between effectiveness and consequences.</p>
+<p>We introduce a <strong>control function</strong> <script type="math/tex"> u(t) </script>, which models the intensity of the treatment (like drug dosage) at time <script type="math/tex"> t </script>. Our goal now is to <strong>choose <script type="math/tex"> u(t) </script> over time</strong> in a way that balances:</p>
+<blockquote>
+<p><p>keeping the tumor volume low, and</p></p>
+<p><p>not overusing the drug.</p></p>
+</blockquote>
+<p>This naturally leads to the idea of an <strong>optimization problem</strong>: we want to find the <em>best</em> <script type="math/tex"> u(t) </script> that makes this trade-off optimal.</p>
+<hr />
+<h3 id="lets-start"><strong>...let's Start</strong><a class="headerlink" href="#lets-start" title="Permanent link"></a></h3>
+<hr />
+<p>We model for how the tumor grows and how the drug affects it:</p>
+<p>
+<script type="math/tex; mode=display">
+V'(t) = rV(t)(1 - V(t)) - u(t)\delta(t)
+</script>
+</p>
+<p><strong>Breakdown of each term:</strong></p>
+<ul>
+<li>
+<script type="math/tex"> rV(t)(1 - V(t)) </script>: basic tumor growth using logistic growth (tumor can’t grow forever),</li>
+<li>
+<script type="math/tex"> u(t)\delta(t) </script>: reduction in tumor due to drug; higher dosage <script type="math/tex"> u(t) </script>, stronger the effect,</li>
+<li>
+<script type="math/tex"> \delta(t) </script>: captures how effective the drug is at time <script type="math/tex"> t </script>; might decay over time.</li>
+</ul>
+<p><strong>Initial condition:</strong></p>
+<p>
+<script type="math/tex; mode=display">
+V(0) = V_0
+</script>
+</p>
+<p><strong>Control constraint:</strong></p>
+<p>
+<script type="math/tex; mode=display">
+u(t) \geq 0 \quad \text{for all } t \in [0, T]
+</script>
+</p>
+<hr />
+<h3 id="introducing-the-objective-what-are-we-minimizing"><strong>Introducing the Objective: What Are We Minimizing?</strong><a class="headerlink" href="#introducing-the-objective-what-are-we-minimizing" title="Permanent link"></a></h3>
+<hr />
+<p>We now ask: <strong>What makes a “good” treatment strategy?</strong></p>
+<p>Intuitively, we want to:</p>
+<ul>
+<li>keep tumor volume low throughout the treatment period,</li>
+<li>avoid unnecessarily high drug dosages.</li>
+</ul>
+<p>To express this mathematically, we define a <strong>cost function</strong> (also called a performance index). This is a single quantity that reflects both goals, so we can minimize it.</p>
+<p>
+<script type="math/tex; mode=display">
+J(u) = \int_0^T \left[ aV(t)^2 + u(t)^2 \right] dt
+</script>
+</p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>
+<script type="math/tex"> V(t)^2 </script>: penalizes tumor size at each moment—bigger tumor, higher penalty,</li>
+<li>
+<script type="math/tex"> u(t)^2 </script>: penalizes how much drug we’re using—more drug, more cost,</li>
+<li>
+<script type="math/tex"> a > 0 </script>: a <strong>weighting factor</strong>—tells us how much more (or less) we care about tumor size compared to drug usage.</li>
+</ul>
+<p>This integral adds up the total penalty from time 0 to time <script type="math/tex"> T </script>. So, the goal is to find a function <script type="math/tex"> u(t) </script> that makes this total cost as small as possible—<em>without violating the tumor dynamics or the control constraint.</em></p>
+<hr />
+<h2 id="the-optimization-problem">The Optimization Problem<a class="headerlink" href="#the-optimization-problem" title="Permanent link"></a></h2>
+<p>Putting everything together:</p>
+<p><strong>Minimize:</strong></p>
+<p>
+<script type="math/tex; mode=display">
+J(u) = \int_0^T \left[ aV(t)^2 + u(t)^2 \right] dt
+</script>
+</p>
+<p><strong>Subject to:</strong></p>
+<p>
+<script type="math/tex; mode=display">
+V'(t) = rV(t)(1 - V(t)) - u(t)\delta(t), \quad V(0) = V_0
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+u(t) \geq 0
+</script>
+</p>
+<hr />
+<h2 id="why-this-matters">Why This Matters<a class="headerlink" href="#why-this-matters" title="Permanent link"></a></h2>
+<p>This formulation sets the stage for powerful mathematical techniques. We're no longer just watching the tumor evolve; we're actively searching for the <em>best way</em> to intervene, balancing outcomes and side effects. The form of the cost function and the constraints reflect real-world priorities: effectiveness vs. safety.</p>
+<p>Once the problem is written in this way, the next step—if we were to continue—would be to develop necessary conditions for optimality using calculus of variations or tools like Pontryagin's principle. But we stop here, having built a crystal-clear formulation of the problem from scratch.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
