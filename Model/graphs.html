@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Graphs Replication - Chosen</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Chosen</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">description</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../description/introduction.html" class="dropdown-item">Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../description/objectives.html" class="dropdown-item">Objectives</a>
+</li>
+                                    
+<li>
+    <a href="../description/tumor_g_ine.html" class="dropdown-item">Tumor Dynamics</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Model</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="derivation.html" class="dropdown-item">Derivations</a>
+</li>
+                                    
+<li>
+    <a href="graphs.html" class="dropdown-item active" aria-current="page">Graphs Replication</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../code.html" class="nav-link">All Code</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="derivation.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../code.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#model-replication" class="nav-link">Model Replication</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#unni-seshaiyer-2019" class="nav-link">Unni &amp; Seshaiyer (2019)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#purpose-of-this-page" class="nav-link">Purpose of This Page</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#system-of-odes-used" class="nav-link">System of ODEs Used</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#models-of-key-populations" class="nav-link">Models of Key Populations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-tumor-cells" class="nav-link">1. Tumor Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-natural-killer-nk-cells" class="nav-link">2. Natural Killer (NK) Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-dendritic-cells" class="nav-link">3. Dendritic Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-cd8-t-cells" class="nav-link">4. CD8+ T-Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#treatments" class="nav-link">Treatments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#varying-d_3" class="nav-link">Varying d_3</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-tumor-cells_1" class="nav-link">1. Tumor Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-natural-killer-nk-cells_1" class="nav-link">2. Natural killer (NK) Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-dendritic-cells_1" class="nav-link">3. Dendritic Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-cytotoxic-cd8-cells" class="nav-link">4. Cytotoxic (CD8+) Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#varying-s_2" class="nav-link">Varying s_2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-tumor-cells_2" class="nav-link">1. Tumor Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-natural-killer-nk-cells_2" class="nav-link">2. Natural killer (NK) Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-dendritic-cells_2" class="nav-link">3. Dendritic Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-cytotoxic-cd8-cells_1" class="nav-link">4. Cytotoxic (CD8+) Cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="model-replication">Model Replication<a class="headerlink" href="#model-replication" title="Permanent link"></a></h1>
+<h2 id="unni-seshaiyer-2019">Unni &amp; Seshaiyer (2019)<a class="headerlink" href="#unni-seshaiyer-2019" title="Permanent link"></a></h2>
+<h2 id="purpose-of-this-page">Purpose of This Page<a class="headerlink" href="#purpose-of-this-page" title="Permanent link"></a></h2>
+<p>This page presents the replication of key simulation results from <em>Mathematical Modeling, Analysis, and Simulation of Tumor Growth with Drug Interventions</em> by Unni &amp; Seshaiyer (2019). While our <strong>theoretical modeling is based on Sharma (2022)</strong>, the simulation graphs in that paper were incomplete regarding equations and parameters. Therefore, we used Unni &amp; Seshaiyer’s fully specified ODE model to replicate meaningful biological simulations.</p>
+<hr />
+<h2 id="system-of-odes-used">System of ODEs Used<a class="headerlink" href="#system-of-odes-used" title="Permanent link"></a></h2>
+<p>The model simulates the interaction between:
+tumor cells, natural killer (NK) cells, dendritic cells, CD8+ T-cells, and drug interventions.</p>
+<h3 id="parameter-definitions">Parameter definitions<a class="headerlink" href="#parameter-definitions" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> T(t) </script>: Tumor size at time <script type="math/tex"> t </script>
+</li>
+<li>
+<script type="math/tex"> N(t) </script>: Number of natural killer cells</li>
+<li>
+<script type="math/tex"> D(t) </script>: Number of dendritic cells cells</li>
+<li>
+<script type="math/tex"> L(t) </script>: Number of cytotoxic CD8+ Tcells cells</li>
+</ul>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> K_T </script>: How much the chemo drug harms Tumor cells</li>
+<li>
+<script type="math/tex"> K_N </script>: How much the chemo drug harms NK cells</li>
+<li>
+<script type="math/tex"> K_D </script>: How much the chemo drug harms dendritic cells</li>
+<li>
+<script type="math/tex"> K_L </script>: How much the chemo drug harms CD8+ T-cells</li>
+</ul>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> a </script>: tumor growth rate</li>
+<li>
+<script type="math/tex"> b </script>: tumor-carrying capacity</li>
+<li>
+<script type="math/tex"> c_1 </script>: NK cell tumor cell kill rat</li>
+<li>
+<script type="math/tex"> c_2 </script>: NK cell inactivation rate by tumor cells</li>
+<li>
+<script type="math/tex"> d_1 </script>: rate of dendritic cell priming(activate) NK cells</li>
+<li>
+<script type="math/tex"> d_2 </script>: NK cell dendritic cell kill rate</li>
+<li>
+<script type="math/tex"> d_3 </script>: rate of tumor cells priming dendritic cells</li>
+<li>
+<script type="math/tex"> e </script>: death rate of NK cell estimated</li>
+<li>
+<script type="math/tex"> f_1 </script>: CD8+ T cell dendritic cells kill rate</li>
+<li>
+<script type="math/tex"> f_2 </script>: rate of dendritic cells priming CD8+ T cell</li>
+<li>
+<script type="math/tex"> g </script>: death rate of dendritic cells</li>
+<li>
+<script type="math/tex"> h </script>: CD8+ T inactivation rate by tumor cells</li>
+<li>
+<script type="math/tex"> i </script>: death rate of CD8+ T cells</li>
+<li>
+<script type="math/tex"> j </script>: dendritic cell tumor cell kill rate</li>
+<li>
+<script type="math/tex"> k </script>: NK cell tumor cell kill rate</li>
+<li>
+<script type="math/tex"> s_1 </script>: source of NK cells</li>
+<li>
+<script type="math/tex"> s_2 </script>: source of dendritic cell</li>
+<li>
+<script type="math/tex"> u </script>: regulatory function by Nk cells of CD8+ T cells</li>
+</ul>
+<hr />
+<p>The relevant system of equations are:</p>
+<hr />
+<h1 id="models-of-key-populations">Models of Key Populations<a class="headerlink" href="#models-of-key-populations" title="Permanent link"></a></h1>
+<hr />
+<h2 id="1-tumor-cells">1. Tumor Cells<a class="headerlink" href="#1-tumor-cells" title="Permanent link"></a></h2>
+<p><em>abnormal cells that divide and grow uncontrollably, forming a mass of tissue known as a tumor</em></p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dT}{dt} = aT(1 - bT) - (c_1 N + jD + kL)T - K_T z(M)T
+</script>
+</p>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> aT(1 - bT) </script>: Logistic growth (natural tumor proliferation with carrying capacity).</li>
+<li>
+<script type="math/tex"> - (c₁N + jD + kL)T </script>: Loss due to interactions with NK cells, dendritic cells, and T-cells.</li>
+<li>
+<script type="math/tex"> - K_T z(M)T </script>: Tumor cell death due to chemotherapy, with a nonlinear kill term <script type="math/tex"> z(M) = 1 - e^{-M} </script>
+</li>
+</ul>
+<hr />
+<h2 id="2-natural-killer-nk-cells">2. Natural Killer (NK) Cells<a class="headerlink" href="#2-natural-killer-nk-cells" title="Permanent link"></a></h2>
+<p><em>white blood cells that destroy infected cells and cancer cells in your body</em></p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dN}{dt} = s_1 + \frac{g_1 N T^2}{h_1 + T^2} - (c_2 T + d_1 D)N - K_N z(M)N - eN
+</script>
+</p>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> s_1 </script>: Constant source of NK cells.</li>
+<li>
+<script type="math/tex"> \frac{g_1 N T^2}{h_1 + T^2} </script>: NK cell recruitment via a Michaelis–Menten-like function.</li>
+<li>
+<script type="math/tex"> (c_2 T + d_1 D)N </script>: loss due to competition with tumor cells and dendritic cells</li>
+<li>
+<script type="math/tex"> K_N z(M)N </script>: loss due to chemotherapy drug</li>
+<li>
+<script type="math/tex"> eN </script>: Natural death of NK cells</li>
+</ul>
+<hr />
+<h2 id="3-dendritic-cells">3. Dendritic Cells<a class="headerlink" href="#3-dendritic-cells" title="Permanent link"></a></h2>
+<p><em>A special type of immune cell that is found in tissues, such as the skin, and boosts immune responses by showing antigens on its surface to other cells of the immune system</em></p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dD}{dt} = s_2 - (f_1 L - d_2 N + d_3 T)D - K_D z(M)D - gD
+</script>
+</p>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> s_2 </script>: Constant source of dendritic cells.</li>
+<li>
+<script type="math/tex"> (f_1 L - d_2 N + d_3 T)D </script>: loss due to competition with Nk and CD8+ cells. <script type="math/tex"> d_3T </script> rather activates dendritic cells</li>
+<li>
+<script type="math/tex"> K_D z(M)D </script>: loss due to chemotherapy drug</li>
+<li>
+<script type="math/tex"> gD </script>: Natural death of dendritic cells</li>
+</ul>
+<hr />
+<h2 id="4-cd8-t-cells">4. CD8+ T-Cells<a class="headerlink" href="#4-cd8-t-cells" title="Permanent link"></a></h2>
+<p><em>a type of white blood cell that plays a crucial role in the immune system by directly killing infected cells and cancerous cells.</em></p>
+<p>
+<script type="math/tex; mode=display">
+\frac{dL}{dt} = f_2 D T - h L T - u N L^2 + r_1 N T + \frac{p_I I L}{g_I + I} - K_L z(M) L - iL + v_L(t)
+</script>
+</p>
+<hr />
+<ul>
+<li>
+<script type="math/tex"> f_2DT </script>: Activated by Dendritic-Tumor interaction.</li>
+<li>
+<script type="math/tex"> -hLT </script>: Competition between CD8+ T cells and tumor cells</li>
+<li>
+<script type="math/tex"> -uNL^2 </script>: describes regulation and suppression of CD8+ T-cell activity when there are high levels of activated CD8+ T-cells without responsiveness to cytokines in the system.</li>
+<li>
+<script type="math/tex"> r₁NT </script>: recruitment term proportional to the number of cells killed</li>
+<li>
+<script type="math/tex"> \frac{p_I I L}{g_I + I} </script>: Immune activation by immunotherapy drug.</li>
+<li>
+<script type="math/tex"> K_L z(M) L </script>: loss due to chemotherapy drug</li>
+<li>
+<script type="math/tex"> iL </script>: Natural death of CD8+ T-cells</li>
+<li>
+<script type="math/tex"> v_L(t) </script>: External T-cell infusion (e.g. TIL therapy).</li>
+</ul>
+<hr />
+<h2 id="treatments">Treatments<a class="headerlink" href="#treatments" title="Permanent link"></a></h2>
+<hr />
+<h3 id="1-chemotherapy-drug">1. Chemotherapy Drug<a class="headerlink" href="#1-chemotherapy-drug" title="Permanent link"></a></h3>
+<p>
+<script type="math/tex; mode=display">
+\frac{dM}{dt} = v_M(t) - d_4 M
+</script>
+</p>
+<ul>
+<li>
+<script type="math/tex"> v_M(t) </script> : Chemotherapy drug dosage over time</li>
+<li>
+<script type="math/tex"> d_4 M </script> : Natural clearance from the bloodstream.</li>
+</ul>
+<hr />
+<h3 id="2-immunotherapy-drug">2. Immunotherapy Drug<a class="headerlink" href="#2-immunotherapy-drug" title="Permanent link"></a></h3>
+<p>
+<script type="math/tex; mode=display">
+\frac{dI}{dt} = v_I(t) - d_5 I
+</script>
+</p>
+<p>Where the nonlinear chemotherapy kill function is defined as:</p>
+<p>
+<script type="math/tex; mode=display">
+z(M) = 1 - e^{-M}
+</script>
+</p>
+<p>The primary simulation variable explored is <script type="math/tex"> s_2 </script>, the dendritic cell source term.</p>
+<ul>
+<li>
+<script type="math/tex"> v_I(t) </script>: Immunotherapy drug dosage.</li>
+<li>
+<script type="math/tex"> d_5 I </script>: Natural clearance from the bloodstream.</li>
+</ul>
+<hr />
+<h1 id="varying-d_3">Varying <script type="math/tex">d_3 </script>
+<a class="headerlink" href="#varying-d_3" title="Permanent link"></a></h1>
+<p><em><script type="math/tex"> d_3</script> is the rate of tumor cells priming dendritic cells</em></p>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link"></a></h3>
+<ol>
+<li>There are not recruitment terms for CD8+ T cells and NK cells ie <strong><script type="math/tex">(r_1 = g_1 = h_1 = 0)</script></strong></li>
+<li>remove all the supression, regulation and activation of CD8+ T cells ie <strong><script type="math/tex">(p_I = g_I = u = 0)</script></strong></li>
+<li>There is not influence of drugs/vaccine on cell populations ie <strong><script type="math/tex">(K_T = K_N = K_D = K_L = v_L = v_M = v_I = 0)</script></strong></li>
+<li>Weak immune system with initial conditions of <em>100 tumor cells, 1 natural killer cell, 1 dendritic cell, 1 CD8+ T cell</em></li>
+</ol>
+<hr />
+<h2 id="1-tumor-cells_1">1. Tumor Cells<a class="headerlink" href="#1-tumor-cells_1" title="Permanent link"></a></h2>
+<div><img src="../img/tumord3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-d_3-on-tumor-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<h2 id="2-natural-killer-nk-cells_1">2. Natural killer (NK) Cells<a class="headerlink" href="#2-natural-killer-nk-cells_1" title="Permanent link"></a></h2>
+<div><img src="../img/nkd3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-d_3-on-Natural-Killer-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<h2 id="3-dendritic-cells_1">3. Dendritic Cells<a class="headerlink" href="#3-dendritic-cells_1" title="Permanent link"></a></h2>
+<div><img src="../img/dendriticd3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-d_3-on-dendritic-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<h2 id="4-cytotoxic-cd8-cells">4. Cytotoxic (CD8+) Cells<a class="headerlink" href="#4-cytotoxic-cd8-cells" title="Permanent link"></a></h2>
+<div><img src="../img/cd8+.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-d_3-on-cd8-t-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<hr />
+<h1 id="varying-s_2">Varying <script type="math/tex">s_2 </script>
+<a class="headerlink" href="#varying-s_2" title="Permanent link"></a></h1>
+<p><em><script type="math/tex"> s_2</script> is the source of dendritic cells</em></p>
+<h3 id="assumptions_1">Assumptions<a class="headerlink" href="#assumptions_1" title="Permanent link"></a></h3>
+<p><em>same as above</em></p>
+<hr />
+<h2 id="1-tumor-cells_2">1. Tumor Cells<a class="headerlink" href="#1-tumor-cells_2" title="Permanent link"></a></h2>
+<div><img src="../img/tumors2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-s_2-on-tumor-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<p>As <script type="math/tex"> s_2 </script> increases, dendritic activation enhances the immune response, leading to progressive tumor suppression. For <script type="math/tex"> s_2 = 5000 </script>, the tumor shrinks significantly compared to baseline.</p>
+<h2 id="2-natural-killer-nk-cells_2">2. Natural killer (NK) Cells<a class="headerlink" href="#2-natural-killer-nk-cells_2" title="Permanent link"></a></h2>
+<div><img src="../img/nks2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-s_2-on-natural-killer-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<p>NK cell population initially spikes in all cases, but higher <script type="math/tex"> s_2 </script> supports more sustained NK activity, likely due to indirect immune stimulation.</p>
+<h2 id="3-dendritic-cells_2">3. Dendritic Cells<a class="headerlink" href="#3-dendritic-cells_2" title="Permanent link"></a></h2>
+<div><img src="../img/dendritics2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-s_2-on-dendritic-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<p>T-cell activation increases significantly with higher dendritic cell source. This is consistent with the role of dendritic cells in activating adaptive immunity.</p>
+<h2 id="4-cytotoxic-cd8-cells_1">4. Cytotoxic (CD8+) Cells<a class="headerlink" href="#4-cytotoxic-cd8-cells_1" title="Permanent link"></a></h2>
+<div><img src="../img/cd8+s2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#effect-of-varying-s_2-on-cytotoxic-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+
+<p>As expected, higher <script type="math/tex"> s_2 </script> directly results in greater dendritic cell population. However, immune feedback mechanisms influence the trajectory.</p>
+<hr />
+<h3 id="insights">insights<a class="headerlink" href="#insights" title="Permanent link"></a></h3>
+<p>These results confirm that dendritic cell influx (<script type="math/tex"> s_2 </script>) has a cascading effect on the immune system’s ability to control tumor growth. Increasing <script type="math/tex"> s_2 </script> boosts dendritic, NK, and CD8+ T-cell populations, leading to improved tumor suppression. This reinforces the value of dendritic cell-based immunotherapy strategies in clinical settings.</p>
+<hr />
+<p><em>Note: All models and simulations in this section are based on the equations from Unni &amp; Seshaiyer (2019).</em></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
