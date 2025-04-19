@@ -269,15 +269,20 @@ This naturally leads to the idea of an **optimization problem**: we want to find
 
 We model for how the tumor grows and how the drug affects it:
 
+> **Rate of change of tumor volume** =  
+> (rate of tumor growth × current tumor size × resource limitation factor) - (magnitude of dose × strength of the drug × current tumor size)
+
 \[
-V'(t) = rV(t)(1 - V(t)) - u(t)\delta(t)
+V'(t) = rV(t)(1 - V(t)) - u(t)\delta(t)V(t)
 \]
 
 **Breakdown of each term:**
 
+- \( r \) is the natural growth rate of the tumor cell,
+- \( \delta(t) \) is the magnitude of the dose
+- \( u(t) \) captures how effective the drug is at time \( t \); might decay over time.
 - \( rV(t)(1 - V(t)) \): basic tumor growth using logistic growth (tumor can’t grow forever),
 - \( u(t)\delta(t) \): reduction in tumor due to drug; higher dosage \( u(t) \), stronger the effect,
-- \( \delta(t) \): captures how effective the drug is at time \( t \); might decay over time.
 
 **Initial condition:**
 

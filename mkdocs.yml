@@ -11,6 +11,7 @@ nav:
       - Tumor Dynamics: description/tumor_g_ine.md
   - Model:
       - Derivations: Model/derivation.md
+      - Graphs Replication: Model/graphs.md
   - All Code: code.md
 
 markdown_extensions:
