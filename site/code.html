@@ -62,6 +62,10 @@
 <li>
     <a href="Model/derivation.html" class="dropdown-item">Derivations</a>
 </li>
+                                    
+<li>
+    <a href="Model/graphs.html" class="dropdown-item">Graphs Replication</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -76,7 +80,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="Model/derivation.html" class="nav-link">
+                                <a rel="prev" href="Model/graphs.html" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -110,6 +114,50 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#behavior-of-the-von-bertalanffy-model" class="nav-link">Behavior of the Von Bertalanffy model</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-d_3-on-tumor-cells" class="nav-link">Effect of varying d_3 on tumor cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-d_3-on-natural-killer-cells" class="nav-link">Effect of varying d_3 on Natural Killer cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-d_3-on-dendritic-cells" class="nav-link">Effect of varying d_3 on Dendritic cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-d_3-on-cd8-t-cells" class="nav-link">Effect of varying d_3 on CD8+ T cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-s_2-on-tumor-cells" class="nav-link">Effect of varying s_2 on tumor cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-s_2-on-natural-killer-cells" class="nav-link">Effect of varying s_2 on Natural killer cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-s_2-on-dendritic-cells" class="nav-link">Effect of varying s_2 on Dendritic cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#effect-of-varying-s_2-on-cytotoxic-cells" class="nav-link">Effect of varying s_2 on Cytotoxic cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#eff-of-varying-d_3-on-tumor-cells" class="nav-link">Eff of varying d_3 on tumor cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#eff-of-varying-d_3-on-tumor-cells_1" class="nav-link">Eff of varying d_3 on tumor cells</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#eff-of-varying-d_3-on-tumor-cells_2" class="nav-link">Eff of varying d_3 on tumor cells</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -178,7 +226,531 @@ xlabel(&quot;time(days)&quot;)
 legend('V0 &lt; K^3', 'V0 = K^3', 'V0 &gt; K^3')
 title(&quot;Von Bertalanffy model&quot;)
 
-</code></pre></div>
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-d_3-on-tumor-cells">Effect of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#effect-of-varying-d_3-on-tumor-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = [1e-4, 2e-4, 4e-4, 8e-4];
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = 500;
+u = 0;
+r1 = 0;
+pI = 0;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(d3)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2 - (f1*L + d2*N - d3(z)*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+plot(t, T, LineWidth=1)
+end
+
+title(&quot;Tumor cells vs Time&quot;);
+ylabel(&quot;Tumor Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;d3 = 1e-4&quot;, &quot;d3 = 2e-4&quot;, &quot;d3 = 4e-4&quot;, &quot;d3 = 8e-4&quot;);
+
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-d_3-on-natural-killer-cells">Effect of varying <script type="math/tex">d_3</script> on Natural Killer cells<a class="headerlink" href="#effect-of-varying-d_3-on-natural-killer-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = [1e-4, 2e-4, 4e-4, 8e-4];
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = 500;
+u = 0;
+r1 = 0;
+pI = 0;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(d3)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2 - (f1*L + d2*N - d3(z)*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 3);
+plot(t, T, LineWidth=1)
+end
+
+title(&quot;NK cells vs Time&quot;);
+ylabel(&quot;Natural Killer Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;d3 = 1e-4&quot;, &quot;d3 = 2e-4&quot;, &quot;d3 = 4e-4&quot;, &quot;d3 = 8e-4&quot;);
+
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-d_3-on-dendritic-cells">Effect of varying <script type="math/tex">d_3</script> on Dendritic cells<a class="headerlink" href="#effect-of-varying-d_3-on-dendritic-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = [1e-4, 2e-4, 4e-4, 8e-4];
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = 500;
+u = 0;
+r1 = 0;
+pI = 0;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(d3)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2 - (f1*L + d2*N - d3(z)*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 2);
+plot(t, T, LineWidth=1)
+end
+
+title(&quot;Dendritic cells vs Time&quot;);
+ylabel(&quot;Dendritic Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;d3 = 1e-4&quot;, &quot;d3 = 2e-4&quot;, &quot;d3 = 4e-4&quot;, &quot;d3 = 8e-4&quot;);
+
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-d_3-on-cd8-t-cells">Effect of varying <script type="math/tex">d_3</script> on CD8+ T cells<a class="headerlink" href="#effect-of-varying-d_3-on-cd8-t-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = [1e-4, 2e-4, 4e-4, 8e-4];
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = 500;
+u = 0;
+r1 = 0;
+pI = 0;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(d3)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2 - (f1*L + d2*N - d3(z)*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 4);
+plot(t, T, LineWidth=1)
+end
+
+title(&quot;CD8+ T cells vs Time&quot;);
+ylabel(&quot;CD8+ T Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;d3 = 1e-4&quot;, &quot;d3 = 2e-4&quot;, &quot;d3 = 4e-4&quot;, &quot;d3 = 8e-4&quot;);
+
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-s_2-on-tumor-cells">Effect of varying <script type="math/tex">s_2</script> on tumor cells<a class="headerlink" href="#effect-of-varying-s_2-on-tumor-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;Tumor Cells vs Time&quot;);
+ylabel(&quot;Tumor Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-s_2-on-natural-killer-cells">Effect of varying <script type="math/tex">s_2</script> on Natural killer cells<a class="headerlink" href="#effect-of-varying-s_2-on-natural-killer-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 3);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;Natural Killer Cells vs Time&quot;);
+ylabel(&quot;Natural Killer Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-s_2-on-dendritic-cells">Effect of varying <script type="math/tex">s_2</script> on Dendritic cells<a class="headerlink" href="#effect-of-varying-s_2-on-dendritic-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 2);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;Dendritic Cells vs Time&quot;);
+ylabel(&quot;Dendritic Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
+</code></pre>
+<hr />
+<h2 id="effect-of-varying-s_2-on-cytotoxic-cells">Effect of varying <script type="math/tex">s_2</script> on Cytotoxic cells<a class="headerlink" href="#effect-of-varying-s_2-on-cytotoxic-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 4);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;CD8+ T Cells vs Time&quot;);
+ylabel(&quot;CD8+ T Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
+</code></pre>
+<hr />
+<h2 id="eff-of-varying-d_3-on-tumor-cells">Eff of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#eff-of-varying-d_3-on-tumor-cells" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+</code></pre>
+<hr />
+<h2 id="eff-of-varying-d_3-on-tumor-cells_1">Eff of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#eff-of-varying-d_3-on-tumor-cells_1" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+</code></pre>
+<hr />
+<h2 id="eff-of-varying-d_3-on-tumor-cells_2">Eff of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#eff-of-varying-d_3-on-tumor-cells_2" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+</code></pre>
+<hr /></div>
             </div>
         </div>
 
