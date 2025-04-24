@@ -185,11 +185,15 @@ _\( d_3\) is the rate of tumor cells priming dendritic cells_
   <a href="../code.html#effect-of-varying-d_3-on-tumor-cells" class="btn btn-primary" role="button">See code</a>
 </div>
 
+Increasing d3 appears to lead to a more rapid initial decrease in tumour cell numbers and potentially a lower overall tumour burden in the long term
+
 ## 2. Natural killer (NK) Cells
 
 <div><img src="../img/nkd3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-varying-d_3-on-Natural-Killer-cells" class="btn btn-primary" role="button">See code</a>
 </div>
+
+The dynamics of NK cells seem to be affected, showing a more pronounced initial increase as d3 increases
 
 ## 3. Dendritic Cells
 
@@ -197,11 +201,15 @@ _\( d_3\) is the rate of tumor cells priming dendritic cells_
   <a href="../code.html#effect-of-varying-d_3-on-dendritic-cells" class="btn btn-primary" role="button">See code</a>
 </div>
 
+As expected, increasing the proliferation rate of dendritic cells due to tumour cells (d3) results in a higher number of dendritic cells
+
 ## 4. Cytotoxic (CD8+) Cells
 
 <div><img src="../img/cd8+.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-varying-d_3-on-cd8-t-cells" class="btn btn-primary" role="button">See code</a>
 </div>
+
+The number of CD8+ T cells also appears to increase with higher values of d3, suggesting a stronger adaptive immune response
 
 ---
 
@@ -252,6 +260,8 @@ As expected, higher \( s_2 \) directly results in greater dendritic cell populat
 ### insights
 
 These results confirm that dendritic cell influx (\( s_2 \)) has a cascading effect on the immune system’s ability to control tumor growth. Increasing \( s_2 \) boosts dendritic, NK, and CD8+ T-cell populations, leading to improved tumor suppression. This reinforces the value of dendritic cell-based immunotherapy strategies in clinical settings.
+
+---
 
 ---
 
