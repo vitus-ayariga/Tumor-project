@@ -33,11 +33,11 @@ tumor cells, natural killer (NK) cells, dendritic cells, CD8+ T-cells, and drug 
 
 - \( a \): tumor growth rate
 - \( b \): tumor-carrying capacity
-- \( c_1 \): NK cell tumor cell kill rat
+- \( c_1 \): NK cell tumor cell kill rate
 - \( c_2 \): NK cell inactivation rate by tumor cells
 - \( d_1 \): rate of dendritic cell priming(activate) NK cells
 - \( d_2 \): NK cell dendritic cell kill rate
-- \( d_3 \): rate of tumor cells priming dendritic cells
+- \( d_3 \): inhibition/suppression of NKs by dendritic cells
 - \( e \): death rate of NK cell estimated
 - \( f_1 \): CD8+ T cell dendritic cells kill rate
 - \( f_2 \): rate of dendritic cells priming CD8+ T cell

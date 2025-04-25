@@ -12,6 +12,8 @@ nav:
   - Model:
       - Derivations: Model/derivation.md
       - Graphs Replication: Model/graphs.md
+
+  - Modifications: description/modifications.md
   - All Code: code.md
 
 markdown_extensions:

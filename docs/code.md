@@ -690,11 +690,299 @@ legend("v_L = 1", "v_L = e1", "v_L = 1e2", "v_L = 1e3", "v_L = 1e4", "v_L = 1e5"
 
 ---
 
-## Eff of varying \(d_3\) on tumor cells
+## Regular Exercise, good diet and stressed
 
 ---
 
 ```
+
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+% modified constants
+Se = 0.02;
+Ss = 0.015;
+Sh = 0.025;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T +(-Se + Ss - Sh)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title("Good Exercise, Good food and Stressed");
+ylabel("Tumor Cells");
+xlabel("Time(days)");
+legend("s2 = 500", "s2 = 2000", "s2 = 5000");
+```
+
+---
+
+## Regular Exercise, good diet and no stress
+
+---
+
+```
+
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+% modified constants
+Se = 0.02;
+Ss = 0.0;
+Sh = 0.025;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold, grid on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T +(-Se + Ss - Sh)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title("Good Exercise, Good food and no Stress");
+ylabel("Tumor Cells");
+xlabel("Time(days)");
+legend("s2 = 500", "s2 = 2000", "s2 = 5000");
+```
+
+---
+
+## No Exercise, good diet and stressed
+
+---
+
+```
+
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+% modified constants
+Se = 0.00;
+Ss = 0.015;
+Sh = 0.025;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold, grid on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T +(-Se + Ss - Sh)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title("Good food Stressed and No Exercise");
+ylabel("Tumor Cells");
+xlabel("Time(days)");
+legend("s2 = 500", "s2 = 2000", "s2 = 5000");
+```
+
+---
+
+## Parametric Sweep for Exercise (Se)
+
+---
+
+```
+% Fixed parameters
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = 2000; % You can choose any one, or loop later if needed
+u = 0;
+r1 = 0;
+pI = 0;
+
+% Modification factors
+Ss = 0.01;       % Psychological stress (fixed)
+Sh = 0.03;       % Herbal therapy (fixed)
+Se_vals = [0.00 0.01 0.02 0.03 0.04]; % Exercise sweep
+
+colors = ['r' 'g' 'b' 'c' 'm'];
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1]; % T, D, N, L
+
+figure
+hold on
+
+for i = 1:length(Se_vals)
+    Se = Se_vals(i); % current exercise level
+
+    % define functions
+    dTdt = @(t, T, D, N, L) a*T*(1 - b*T) - (c1*N - j1*D + k*L)*T + (-Se + Ss - Sh)*T;
+    dDdt = @(t, D, T, N, L) s2 - (f1*L + d2*N - d3*T)*D - g*D;
+    dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+    dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+    % solve ODEs
+    [t, Y] = ode45(@(t,y)[ ...
+        dTdt(t, y(1), y(2), y(3), y(4)); ...
+        dDdt(t, y(2), y(1), y(3), y(4)); ...
+        dNdt(t, y(3), y(1), y(2), y(4)); ...
+        dLdt(t, y(2), y(1), y(4), y(3))], tspan, y0);
+
+    T = Y(:, 1); % extract tumor cells
+
+    % plot
+    plot(t, T, 'Color', colors(i), 'LineWidth', 2);
+end
+
+title("Effects of Exercise");
+xlabel("Time (days)");
+ylabel("Tumor Cell Population");
+legend("Se = 0.00", "Se = 0.01", "Se = 0.02", "Se = 0.03", "Se = 0.04", 'Location', 'northeast');
+grid on
 
 ```
 
