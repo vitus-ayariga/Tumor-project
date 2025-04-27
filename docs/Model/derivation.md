@@ -66,6 +66,7 @@ Now:
 - \( \alpha = 1 \) → Standard logistic growth
 - \( \alpha > 1 \) → More abrupt slowdown near capacity
 - \( \alpha < 1 \) → More gradual saturation
+
   <div><img src="../img/diff_alphas.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-logistic-shape-parameter" class="btn btn-primary" role="button">See code</a>
 </div>
@@ -241,8 +242,15 @@ This solution shows:
 - If \( V_0 < K \), tumor grows to equilibrium.
 - If \( V_0 > K \), tumor shrinks to equilibrium.
 - If \( V_0 = K \), tumor remains constant.
-<div><img src="../img/von_b.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
-  <a href="../code.html#behavior-of-the-von-bertalanffy-model" class="btn btn-primary" role="button">See code</a>
+
+<div style="display: flex; align-items: center; gap: 20px; flex-direction: row-reverse;">
+  <div><img src="../img/von_b.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#behavior-of-the-von-bertalanffy-model" class="btn btn-primary" role="button">See code (replicated)</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/vonOriginal.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 ---

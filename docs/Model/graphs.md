@@ -181,32 +181,56 @@ _\( d_3\) is the rate of tumor cells priming dendritic cells_
 
 ## 1. Tumor Cells
 
-<div><img src="../img/tumord3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px; ">
+  <div><img src="../img/tumord3.png" alt="tumor cells with varying d3" style="border-radius: 10px;">
   <a href="../code.html#effect-of-varying-d_3-on-tumor-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep1.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 Increasing d3 appears to lead to a more rapid initial decrease in tumour cell numbers and potentially a lower overall tumour burden in the long term
 
 ## 2. Natural killer (NK) Cells
 
-<div><img src="../img/nkd3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px; ">
+  <div><img src="../img/nkd3.png" alt="tumor cells with varying d3" style=" border-radius: 10px;">
   <a href="../code.html#effect-of-varying-d_3-on-Natural-Killer-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep2.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 The dynamics of NK cells seem to be affected, showing a more pronounced initial increase as d3 increases
 
 ## 3. Dendritic Cells
 
-<div><img src="../img/dendriticd3.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px;">
+  <div><img src="../img/dendriticd3.png" alt="tumor cells with varying d3" style="border-radius: 10px;">
   <a href="../code.html#effect-of-varying-d_3-on-dendritic-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep3.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 As expected, increasing the proliferation rate of dendritic cells due to tumour cells (d3) results in a higher number of dendritic cells
 
 ## 4. Cytotoxic (CD8+) Cells
 
-<div><img src="../img/cd8+.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px;">
+  <div><img src="../img/cd8+.png" alt="tumor cells with varying d3" style=" border-radius: 10px;">
   <a href="../code.html#effect-of-varying-d_3-on-cd8-t-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep4.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 The number of CD8+ T cells also appears to increase with higher values of d3, suggesting a stronger adaptive immune response
@@ -225,32 +249,56 @@ _same as above_
 
 ## 1. Tumor Cells
 
-<div><img src="../img/tumors2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px;">
+  <div><img src="../img/tumors2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-varying-s_2-on-tumor-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep5.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 As \( s_2 \) increases, dendritic activation enhances the immune response, leading to progressive tumor suppression. For \( s_2 = 5000 \), the tumor shrinks significantly compared to baseline.
 
 ## 2. Natural killer (NK) Cells
 
-<div><img src="../img/nks2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px; ">
+  <div><img src="../img/nks2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-varying-s_2-on-natural-killer-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep6.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 NK cell population initially spikes in all cases, but higher \( s_2 \) supports more sustained NK activity, likely due to indirect immune stimulation.
 
 ## 3. Dendritic Cells
 
-<div><img src="../img/dendritics2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 20px; ">
+  <div><img src="../img/dendritics2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-varying-s_2-on-dendritic-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep7.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 T-cell activation increases significantly with higher dendritic cell source. This is consistent with the role of dendritic cells in activating adaptive immunity.
 
 ## 4. Cytotoxic (CD8+) Cells
 
+<div style="display: flex; align-items: center; gap: 20px; ">
 <div><img src="../img/cd8+s2.png" alt="tumor cells with varying d3" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-varying-s_2-on-cytotoxic-cells" class="btn btn-primary" role="button">See code</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/rep7.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 As expected, higher \( s_2 \) directly results in greater dendritic cell population. However, immune feedback mechanisms influence the trajectory.
@@ -266,3 +314,7 @@ These results confirm that dendritic cell influx (\( s_2 \)) has a cascading eff
 ---
 
 _Note: All models and simulations in this section are based on the equations from Unni & Seshaiyer (2019)._
+
+## _References_:
+
+---

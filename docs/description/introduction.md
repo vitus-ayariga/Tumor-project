@@ -1,7 +1,5 @@
 # Introduction
 
-Project documentation with&nbsp;Markdown.
-
 ---
 
 ## Why Cancer?
@@ -53,6 +51,6 @@ All things considered, cancer is a huge medical and social issue harming million
 
 These models help us advance our understanding of cancer and move us closer to overcoming this main challenge in modern medicine, hence improving patient outcomes. Clinical research, mathematics, and biology taken together have significant potential to revolutionize cancer treatment for coming generations.
 
-## References:
+## _References_:
 
 ---

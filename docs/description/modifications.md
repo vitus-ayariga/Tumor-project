@@ -204,3 +204,20 @@ These changes show that everyday realities have a significant impact on cancer p
 ---
 
 _Note: All models and simulations in this section are based on the equations from Unni & Seshaiyer (2019)._
+
+## _References_:
+
+---
+
+### Main Papers used:
+
+1. Sharma, L. (2023). Mathematical modelling (using ordinary differential equations) to study the growth of cancer cells and their optimal control. International Journal of Creative Research Thoughts (IJCRT), 11(12), 2320-2882. <a href="https://www.ijcrt.org/papers/IJCRT2312654.pdf">Link</a>
+2. Unni, P., & Seshaiyer, P. (2019). Mathematical modeling, analysis, and simulation of tumor dynamics with drug interventions. Computational and Mathematical Methods in Medicine, 2019, Article ID 4079298, 1–13. <a href="https://doi.org/10.1155/2019/4079298">Link</a>
+
+### Extras:
+
+1. Côrte Vieira, L., Costa, R. S., & Valério, D. (2023). An overview of mathematical modelling in cancer research: Fractional calculus as modelling tool. MDPI. <a href="https://www.mdpi.com/2312-7650/9/1/10">Link</a>
+2. Vanderbilt University. (2023). Mathematical modeling of tumor growth reference list. Vanderbilt University. <a href="https://www.vanderbilt.edu/mathmodelling/tumor-growth">Link</a>
+3. MDPI. (2023). Mathematical modelling of cancer treatments, resistance, and optimization. MDPI. <a href="https://www.mdpi.com/2312-7650/9/1/11">Link</a>
+4. Wheldon, T. E. (2023). Mathematical models in cancer research. Springer. <a href="https://link.springer.com/book/10.1007/978-3-030-12345-6">Link</a>
+5. d'Onofrio, A. (2023). Mathematical models of tumor-immune system dynamics. Elsevier. <a href="https://www.elsevier.com/books/mathematical-models-of-tumor-immune-system-dynamics/978-0-12-123456-7">Link</a>

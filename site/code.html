@@ -69,6 +69,9 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <a href="description/modifications.html" class="nav-link">Modifications</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="code.html" class="nav-link active" aria-current="page">All Code</a>
                             </li>
                         </ul>
@@ -80,7 +83,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="Model/graphs.html" class="nav-link">
+                                <a rel="prev" href="description/modifications.html" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -153,11 +156,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#eff-of-varying-d_3-on-tumor-cells" class="nav-link">Eff of varying d_3 on tumor cells</a>
+            <li class="nav-item" data-bs-level="2"><a href="#regular-exercise-good-diet-and-stressed" class="nav-link">Regular Exercise, good diet and stressed</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#eff-of-varying-d_3-on-tumor-cells_1" class="nav-link">Eff of varying d_3 on tumor cells</a>
+            <li class="nav-item" data-bs-level="2"><a href="#regular-exercise-good-diet-and-no-stress" class="nav-link">Regular Exercise, good diet and no stress</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#no-exercise-good-diet-and-stressed" class="nav-link">No Exercise, good diet and stressed</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#parametric-sweep-for-exercise-se" class="nav-link">Parametric Sweep for Exercise (Se)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#eff-of-varying-d_3-on-tumor-cells" class="nav-link">Eff of varying d_3 on tumor cells</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -803,12 +818,285 @@ legend(&quot;v_L = 1&quot;, &quot;v_L = e1&quot;, &quot;v_L = 1e2&quot;, &quot;v
 
 </code></pre>
 <hr />
-<h2 id="eff-of-varying-d_3-on-tumor-cells">Eff of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#eff-of-varying-d_3-on-tumor-cells" title="Permanent link"></a></h2>
+<h2 id="regular-exercise-good-diet-and-stressed">Regular Exercise, good diet and stressed<a class="headerlink" href="#regular-exercise-good-diet-and-stressed" title="Permanent link"></a></h2>
 <hr />
 <pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+% modified constants
+Se = 0.02;
+Ss = 0.015;
+Sh = 0.025;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T +(-Se + Ss - Sh)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;Good Exercise, Good food and Stressed&quot;);
+ylabel(&quot;Tumor Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
 </code></pre>
 <hr />
-<h2 id="eff-of-varying-d_3-on-tumor-cells_1">Eff of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#eff-of-varying-d_3-on-tumor-cells_1" title="Permanent link"></a></h2>
+<h2 id="regular-exercise-good-diet-and-no-stress">Regular Exercise, good diet and no stress<a class="headerlink" href="#regular-exercise-good-diet-and-no-stress" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+% modified constants
+Se = 0.02;
+Ss = 0.0;
+Sh = 0.025;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold, grid on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T +(-Se + Ss - Sh)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;Good Exercise, Good food and no Stress&quot;);
+ylabel(&quot;Tumor Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
+</code></pre>
+<hr />
+<h2 id="no-exercise-good-diet-and-stressed">No Exercise, good diet and stressed<a class="headerlink" href="#no-exercise-good-diet-and-stressed" title="Permanent link"></a></h2>
+<hr />
+<pre><code>
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = [500, 2000, 5000];
+u = 0;
+r1 = 0;
+pI = 0;
+colors= ['r' 'g' 'b'];
+
+% modified constants
+Se = 0.00;
+Ss = 0.015;
+Sh = 0.025;
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1];
+
+figure
+hold, grid on
+for z = 1:length(s2)
+
+
+% define functions
+dTdt = @(t, T, D, N, L) a*T*(1-b*T) - (c1*N - j1*D + k*L)*T +(-Se + Ss - Sh)*T;
+dDdt = @(t, D, T, N, L) s2(z) - (f1*L + d2*N - d3*T)*D - g*D;
+dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+
+
+% solve differential equations
+[t, Y] = ode45(@(t,y)[ ...
+    dTdt(t, y(1), y(2), y(3), y(4)); ...
+    dDdt(t, y(2), y(1), y(3), y(4)); ...
+    dNdt(t, y(3), y(1), y(2), y(4)); ...
+    dLdt(t,y(2), y(1), y(4), y(3))], tspan, y0);
+
+% extract
+T = Y(:, 1);
+
+plot(t, T, LineWidth=2, Color=colors(z))
+end
+
+title(&quot;Good food Stressed and No Exercise&quot;);
+ylabel(&quot;Tumor Cells&quot;);
+xlabel(&quot;Time(days)&quot;);
+legend(&quot;s2 = 500&quot;, &quot;s2 = 2000&quot;, &quot;s2 = 5000&quot;);
+</code></pre>
+<hr />
+<h2 id="parametric-sweep-for-exercise-se">Parametric Sweep for Exercise (Se)<a class="headerlink" href="#parametric-sweep-for-exercise-se" title="Permanent link"></a></h2>
+<hr />
+<pre><code>% Fixed parameters
+a = 4.31e-1;
+b = 2.17e-8;
+c1 = 3.5e-6;
+c2 = 1e-7;
+d1 = 1e-6;
+d2 = 4e-6;
+d3 = 1e-4;
+e = 4.12e-2;
+f1 = 1e-8;
+f2 = 0.01;
+g = 2.4e-2;
+g1 = 0;
+gI = 0;
+h = 3.42e-10;
+h1 = 0;
+i1 = 2e-2;
+I = 1;
+j1 = 1e-7;
+k = 1e-7;
+s1 = 1.3e4;
+s2 = 2000; % You can choose any one, or loop later if needed
+u = 0;
+r1 = 0;
+pI = 0;
+
+% Modification factors
+Ss = 0.01;       % Psychological stress (fixed)
+Sh = 0.03;       % Herbal therapy (fixed)
+Se_vals = [0.00 0.01 0.02 0.03 0.04]; % Exercise sweep
+
+colors = ['r' 'g' 'b' 'c' 'm'];
+
+tspan = [0, 100];
+y0 = [100, 1, 1, 1]; % T, D, N, L
+
+figure
+hold on
+
+for i = 1:length(Se_vals)
+    Se = Se_vals(i); % current exercise level
+
+    % define functions
+    dTdt = @(t, T, D, N, L) a*T*(1 - b*T) - (c1*N - j1*D + k*L)*T + (-Se + Ss - Sh)*T;
+    dDdt = @(t, D, T, N, L) s2 - (f1*L + d2*N - d3*T)*D - g*D;
+    dNdt = @(t, N, T, D, L) s1 - (g1*N*T^2)/(h1 + T^2) - (c2*T - d1*D)*N - e*N;
+    dLdt = @(t, D, T, L, N) f2*D*T - h*L*T - u*N*L^2 + r1*N*T + (pI*L*I)/(gI + I) - i1*L;
+
+    % solve ODEs
+    [t, Y] = ode45(@(t,y)[ ...
+        dTdt(t, y(1), y(2), y(3), y(4)); ...
+        dDdt(t, y(2), y(1), y(3), y(4)); ...
+        dNdt(t, y(3), y(1), y(2), y(4)); ...
+        dLdt(t, y(2), y(1), y(4), y(3))], tspan, y0);
+
+    T = Y(:, 1); % extract tumor cells
+
+    % plot
+    plot(t, T, 'Color', colors(i), 'LineWidth', 2);
+end
+
+title(&quot;Effects of Exercise&quot;);
+xlabel(&quot;Time (days)&quot;);
+ylabel(&quot;Tumor Cell Population&quot;);
+legend(&quot;Se = 0.00&quot;, &quot;Se = 0.01&quot;, &quot;Se = 0.02&quot;, &quot;Se = 0.03&quot;, &quot;Se = 0.04&quot;, 'Location', 'northeast');
+grid on
+
+</code></pre>
+<hr />
+<h2 id="eff-of-varying-d_3-on-tumor-cells">Eff of varying <script type="math/tex">d_3</script> on tumor cells<a class="headerlink" href="#eff-of-varying-d_3-on-tumor-cells" title="Permanent link"></a></h2>
 <hr />
 <pre><code>
 </code></pre>
