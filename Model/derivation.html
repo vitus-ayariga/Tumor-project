@@ -205,13 +205,12 @@
 <li>
 <script type="math/tex"> \alpha > 1 </script> → More abrupt slowdown near capacity</li>
 <li>
-<script type="math/tex"> \alpha < 1 </script> → More gradual saturation
-<br />
+<script type="math/tex"> \alpha < 1 </script> → More gradual saturation</li>
+</ul>
 <div><img src="../img/diff_alphas.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
   <a href="../code.html#effect-of-logistic-shape-parameter" class="btn btn-primary" role="button">See code</a>
 </div>
-</li>
-</ul>
+
 <hr />
 <h3 id="3-lets-not-forget-the-immune-system"><strong>3. Lets not forget the immune system</strong><a class="headerlink" href="#3-lets-not-forget-the-immune-system" title="Permanent link"></a></h3>
 <hr />
@@ -373,8 +372,14 @@ V(t) = \left[\frac{a}{b} + \left( \frac{1}{V_0^{1/3}} - \frac{a}{b} \right)e^{-\
 <li>If <script type="math/tex"> V_0 > K </script>, tumor shrinks to equilibrium.</li>
 <li>If <script type="math/tex"> V_0 = K </script>, tumor remains constant.</li>
 </ul>
-<div><img src="../img/von_b.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
-  <a href="../code.html#behavior-of-the-von-bertalanffy-model" class="btn btn-primary" role="button">See code</a>
+<div style="display: flex; align-items: center; gap: 20px; flex-direction: row-reverse;">
+  <div><img src="../img/von_b.png" alt="change in steepness due to alpha" style="width:400px; border-radius: 10px;">
+  <a href="../code.html#behavior-of-the-von-bertalanffy-model" class="btn btn-primary" role="button">See code (replicated)</a>
+</div>
+  <div style="max-width: 50%;  border-radius: 10px;">
+    <img src="../img/vonOriginal.png" alt="Tumor Dormancy Simulation"  />
+    <p style="">Original Graph</p>
+  </div>
 </div>
 
 <hr />
